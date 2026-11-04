@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en" class="env-locked"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ramez &amp; Souad | Wedding Invitation</title>
 <meta name="description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
@@ -70,7 +70,34 @@ a.btn.fill{color:var(--wbg)}
 #musicLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media(max-width:480px){.music-toggle{right:12px;bottom:12px}}
 
+
+/* Opening envelope */
+html.env-locked,html.env-locked body{overflow:hidden;height:100%}
+#envelope{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;background:radial-gradient(ellipse at 50% 40%,#7d2140 0%,#4a0f24 62%,#2d0615 100%);color:#f1dfc0;transition:opacity .9s ease,visibility .9s}
+#envelope.done{opacity:0;visibility:hidden;pointer-events:none}
+#envelope .env-intro{font:italic 400 clamp(18px,4.5vw,24px) "Cormorant Garamond",Georgia,serif;letter-spacing:.08em;margin:0 0 clamp(22px,6vh,44px);color:#e3c88f}
+.env-wrap{position:relative;width:min(86vw,440px);aspect-ratio:3/2;perspective:1400px;filter:drop-shadow(0 22px 28px rgba(0,0,0,.45))}
+.env-wrap>div{position:absolute}
+.env-back{inset:0;background:#5a1228;border-radius:6px}
+.env-card{left:7%;right:7%;top:8%;bottom:6%;z-index:2;background:linear-gradient(#fbf7ef,#efe6d6);border-radius:4px;display:grid;place-items:start center;padding-top:14%;transition:transform 1s cubic-bezier(.3,.7,.2,1) .55s;color:#7a1f3d}
+.env-card span{font:400 clamp(26px,8vw,40px)/1.1 "Great Vibes",cursive}
+.env-front{inset:0;z-index:4;background:linear-gradient(160deg,#852447,#6a1830);clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);border-radius:6px}
+.env-flap{left:0;right:0;top:0;height:60%;z-index:5;background:linear-gradient(180deg,#9a2c52,#7b1f3f);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;backface-visibility:visible;transition:transform .95s ease,z-index 0s .45s}
+.env-seal{left:50%;top:58%;width:clamp(48px,14%,64px);aspect-ratio:1;margin:calc(clamp(48px,14%,64px)/-2) 0 0 calc(clamp(48px,14%,64px)/-2);z-index:7;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#e9d3a1,#b48f4c 70%);color:#5a1228;box-shadow:0 3px 8px rgba(0,0,0,.4);transition:opacity .4s ease,transform .5s ease}
+.env-seal span{font:400 clamp(17px,5vw,24px)/1 "Great Vibes",cursive}
+#envOpen{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);z-index:8;padding:9px 30px;border:1px solid #e3c88f;border-radius:999px;background:rgba(58,10,26,.55);color:#f6e7c8;font:400 15px/1 Jost,system-ui,sans-serif;letter-spacing:.28em;cursor:pointer;transition:background .25s,opacity .4s}
+#envOpen:hover{background:#e3c88f;color:#4a0f24}
+#envOpen:focus-visible{outline:3px solid #f6e7c8;outline-offset:3px}
+#envelope.opening #envOpen{opacity:0;pointer-events:none}
+#envelope.opening .env-flap{transform:rotateX(180deg);z-index:1}
+#envelope.opening .env-seal{opacity:0;transform:scale(.6)}
+#envelope.opening .env-card{transform:translateY(-58%)}
+@media (prefers-reduced-motion:reduce){#envelope,#envelope *{transition-duration:.01s!important;transition-delay:0s!important}}
 </style></head><body>
+<div id="envelope" role="dialog" aria-label="Wedding invitation envelope">
+<p class="env-intro">You are invited</p>
+<div class="env-wrap"><div class="env-back"></div><div class="env-card"><span>Ramez &amp; Souad</span></div><div class="env-front"></div><div class="env-flap"></div><div class="env-seal"><span>R&amp;S</span></div><button id="envOpen" type="button">OPEN</button></div>
+</div>
 <audio id="weddingMusic" src="wedding-music.mp3" loop preload="auto"></audio>
 <button class="music-toggle" id="musicToggle" type="button"
         aria-label="Play wedding music" aria-pressed="false">
@@ -120,4 +147,14 @@ music.addEventListener("ended",function(){
   musicButton.setAttribute("aria-pressed","false");
 });
 
+
+(function(){
+var h=document.documentElement,o=document.getElementById("envelope"),b=document.getElementById("envOpen");
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+b.addEventListener("click",function(){
+b.disabled=true;o.classList.add("opening");
+setTimeout(function(){o.classList.add("done")},reduce?100:2300);
+setTimeout(function(){o.style.display="none";o.setAttribute("aria-hidden","true");h.classList.remove("env-locked");window.scrollTo(0,0)},reduce?500:3300);
+});
+})();
 </script></body></html>
