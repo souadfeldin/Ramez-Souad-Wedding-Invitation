@@ -152,9 +152,25 @@ music.addEventListener("ended",function(){
 var h=document.documentElement,o=document.getElementById("envelope"),b=document.getElementById("envOpen");
 var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 b.addEventListener("click",function(){
-b.disabled=true;o.classList.add("opening");
-setTimeout(function(){o.classList.add("done")},reduce?100:2300);
-setTimeout(function(){o.style.display="none";o.setAttribute("aria-hidden","true");h.classList.remove("env-locked");window.scrollTo(0,0)},reduce?500:3300);
+  b.disabled=true;
+  // Start playback directly inside the OPEN click (user gesture).
+  music.currentTime=0;
+  var playRequest=music.play();
+  if(playRequest && typeof playRequest.then === "function"){
+    playRequest.then(function(){
+      musicLabel.textContent="Pause music";
+      musicButton.setAttribute("aria-label","Pause wedding music");
+      musicButton.setAttribute("aria-pressed","true");
+    }).catch(function(error){
+      console.error("Wedding music could not start:",error);
+      musicLabel.textContent="Play music";
+      musicButton.setAttribute("aria-label","Play wedding music");
+      musicButton.setAttribute("aria-pressed","false");
+    });
+  }
+  o.classList.add("opening");
+  setTimeout(function(){o.classList.add("done")},reduce?100:2300);
+  setTimeout(function(){o.style.display="none";o.setAttribute("aria-hidden","true");h.classList.remove("env-locked");window.scrollTo(0,0)},reduce?500:3300);
 });
 })();
 </script></body></html>
