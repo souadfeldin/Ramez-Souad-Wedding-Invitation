@@ -2,11 +2,11 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ramez &amp; Souad | Wedding Invitation</title>
-<meta name="description" content="We invite you to celebrate our wedding.">
+<meta name="description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://souadfeldin.github.io/Ramez-Souad/">
 <meta property="og:title" content="Ramez &amp; Souad | Wedding Invitation">
-<meta property="og:description" content="We invite you to celebrate our wedding.">
+<meta property="og:description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
 <meta property="og:image" content="https://souadfeldin.github.io/Ramez-Souad/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -14,7 +14,7 @@
 <meta property="og:image:alt" content="Ramez and Souad wedding invitation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ramez &amp; Souad | Wedding Invitation">
-<meta name="twitter:description" content="We invite you to celebrate our wedding.">
+<meta name="twitter:description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
 <meta name="twitter:image" content="https://souadfeldin.github.io/Ramez-Souad/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -57,21 +57,24 @@ a.btn.fill{color:var(--wbg)}
 /* Background music player */
 .music-toggle{
   position:fixed;right:18px;bottom:18px;z-index:20;
-  display:flex;align-items:center;gap:9px;
-  padding:12px 18px;border:1px solid var(--wline);
+  display:grid;place-items:center;
+  width:48px;height:48px;padding:0;border:1px solid var(--wline);
   border-radius:999px;background:var(--wbg);color:var(--bur);
   box-shadow:0 5px 22px rgba(0,0,0,.13);
   font:400 15px Jost,system-ui,sans-serif;cursor:pointer;
 }
 .music-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.music-toggle .music-symbol{font-size:18px;line-height:1}
-@media(max-width:480px){.music-toggle{right:12px;bottom:12px;padding:10px 15px}}
+.music-toggle svg{display:block}
+.music-toggle[aria-pressed="true"] .sl{display:none}
+.music-toggle[aria-pressed="false"] .w{display:none}
+#musicLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:480px){.music-toggle{right:12px;bottom:12px}}
 
 </style></head><body>
 <audio id="weddingMusic" src="wedding-music.mp3" loop preload="auto"></audio>
 <button class="music-toggle" id="musicToggle" type="button"
         aria-label="Play wedding music" aria-pressed="false">
-  <span class="music-symbol" aria-hidden="true">♫</span>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="sl" d="M3 3l18 18"/></svg>
   <span id="musicLabel">Play music</span>
 </button>
 
