@@ -4,10 +4,10 @@
 <title>Ramez &amp; Souad | Wedding Invitation</title>
 <meta name="description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://souadfeldin.github.io/Ramez-Souad/">
+<meta property="og:url" content="https://souadfeldin.github.io/Ramez-Souad-Wedding-Invitation/">
 <meta property="og:title" content="Ramez &amp; Souad | Wedding Invitation">
 <meta property="og:description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
-<meta property="og:image" content="https://souadfeldin.github.io/Ramez-Souad/og-image.jpg">
+<meta property="og:image" content="https://souadfeldin.github.io/Ramez-Souad-Wedding-Invitation/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ramez &amp; Souad | Wedding Invitation">
 <meta name="twitter:description" content="We invite you to the wedding of Ramez &amp; Souad | Saturday, December 26, 2026 | Tia Vie, Oro Plaza Hotel, New Cairo">
-<meta name="twitter:image" content="https://souadfeldin.github.io/Ramez-Souad/og-image.jpg">
+<meta name="twitter:image" content="https://souadfeldin.github.io/Ramez-Souad-Wedding-Invitation/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -152,25 +152,9 @@ music.addEventListener("ended",function(){
 var h=document.documentElement,o=document.getElementById("envelope"),b=document.getElementById("envOpen");
 var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 b.addEventListener("click",function(){
-  b.disabled=true;
-  // Start playback directly inside the OPEN click (user gesture).
-  music.currentTime=0;
-  var playRequest=music.play();
-  if(playRequest && typeof playRequest.then === "function"){
-    playRequest.then(function(){
-      musicLabel.textContent="Pause music";
-      musicButton.setAttribute("aria-label","Pause wedding music");
-      musicButton.setAttribute("aria-pressed","true");
-    }).catch(function(error){
-      console.error("Wedding music could not start:",error);
-      musicLabel.textContent="Play music";
-      musicButton.setAttribute("aria-label","Play wedding music");
-      musicButton.setAttribute("aria-pressed","false");
-    });
-  }
-  o.classList.add("opening");
-  setTimeout(function(){o.classList.add("done")},reduce?100:2300);
-  setTimeout(function(){o.style.display="none";o.setAttribute("aria-hidden","true");h.classList.remove("env-locked");window.scrollTo(0,0)},reduce?500:3300);
+b.disabled=true;o.classList.add("opening");
+setTimeout(function(){o.classList.add("done")},reduce?100:2300);
+setTimeout(function(){o.style.display="none";o.setAttribute("aria-hidden","true");h.classList.remove("env-locked");window.scrollTo(0,0)},reduce?500:3300);
 });
 })();
 </script></body></html>
